@@ -47,7 +47,18 @@
 			<hr/>
 			<ul class="list ">
 				<li class="list-item " v-for="(note, i) in notes">
-					<span >{{ i + 1 }}. {{ note }}</span>
+					<!-- dynamic classes -->
+					<!-- <span :class="note.length < 3 ? 'danger': ''">{{ i + 1 }}. {{ note }}</span> -->
+
+					<!-- dynamic classes as object -->
+					<!-- <span :class="{
+						'danger': note.length < 3,
+						'bold': note.length > 5
+					}"> {{ i + 1 }}. {{ note }} </span> -->
+
+					<!-- dynamic classes - array  -->
+					<span :class="['bold', {'primary': note.length > 5}]">{{ i + 1 }}. {{ note }}</span>
+
 					<button class="btn danger " @click="deleteNote(i) ">Delete</button>
 				</li>
 				<hr/>
