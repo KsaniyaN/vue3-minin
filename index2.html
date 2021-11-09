@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="theme.css">
 	<style>
 		[v-cloak] {
-			display: none ;
+			display: none;
 		}
 	</style>
 </head>
@@ -25,6 +25,60 @@
 			Change Title
 		</button>
 		<span class="pt-1">if you can</span>
+	</div>
+
+	<div class="card center">
+		<ul class="list" v-if="myItems.length">
+			<!-- v-for - numbers, id's -->
+			<!-- <li class="list-item" v-for="(item, i) in 7">
+				{{ i }}. {{ item }}
+			</li> -->
+
+			<!-- v-for - object -->
+			<!-- <li class="list-item" v-for="(value, key) in person ">
+				<strong>{{ key }}:</strong> {{ value }}
+			</li> -->
+
+			<!-- v-for - array -->
+			<li class="list-item"
+				v-for="(item, i) in myItems"
+				@click="myItems.splice(i, 1)">
+				{{ item }}.
+			</li>
+		</ul>
+
+		<!-- v-else, v-show -->
+		<p class="danger" v-else>No more elements - v-else</p>
+		<p class="danger" v-show="myItems.length === 0">No more elements - v-show</p>
+	</div>
+
+<!--	<div class="card center">-->
+<!--		<ul class="list" v-if="myNumbers.length">-->
+<!--			<li class="list-item"-->
+<!--				v-for="(item, i) in evenItems"-->
+<!--				@click="myNumbers.splice(i, 1)"-->
+<!--				:key="item">-->
+<!--				<strong>{{ item }}.</strong> <input type="text" @click.prevent.stop>-->
+<!--			</li>-->
+<!--		</ul>-->
+<!--		<p class="danger" v-else>No more elements - v-else</p>-->
+<!--	</div>-->
+
+	<div class="card center">
+
+		<div class="form-control">
+			<input type="text" @keyup.enter="addNewListItem" ref="myInput">
+		</div>
+
+		<ul class="list" v-if="myNumbers.length">
+			<li class="list-item"
+				v-for="(item, i) in myNumbers"
+				@click="removeItem(i), logItem(item)"
+				:key="item">
+				<strong>{{ item }}.</strong> <input type="text" @click.prevent.stop>
+			</li>
+		</ul>
+		<p class="danger" v-else>No more elements - v-else</p>
 	</div>
 </div>
 

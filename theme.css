@@ -45,7 +45,7 @@ h1 {
 
 h2 {
 	border-bottom: 1px solid #eaecef;
-	font-size: 1.65rem;
+	font-size: 1.45rem;
 	padding-bottom: 0.3rem;
 }
 
@@ -226,6 +226,11 @@ h3 {
 
 .list-item:hover {
 	background: #eee;
+	cursor: pointer;
+}
+
+.list-item strong {
+	padding-right: 1em;
 }
 
 .alert {
