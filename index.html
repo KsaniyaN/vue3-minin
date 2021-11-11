@@ -32,10 +32,19 @@
 
 		<div class="form-control">
 			<!-- dynamic value for attribute - use binding, v-bind -->
-			<!-- <input type="text" :placeholder="placeholderText" :value="inputValue" @input="inputChangeHandler" @keypress.enter="addNewNote" /> -->
+			<!-- <input type="text"
+				:placeholder="placeholderText"
+				:value="inputValue"
+				@input="inputChangeHandler"
+				@keypress.enter="addNewNote"
+			/> -->
 
 			<!-- even cleaner - v-model -->
-			<input type="text" :placeholder="placeholderText" v-model="inputValue" @keypress.enter="addNewNote"/>
+			<input type="text"
+				   :placeholder="placeholderText"
+				   v-model="inputValue"
+				   @keypress.enter="addNewNote"
+			/>
 		</div>
 
 		<!-- dynamic value update - binding -->
@@ -70,6 +79,29 @@
 		<!-- v-else -->
 		<div v-else>
 			<p>There are no notes yet. It feels lonely..</p>
+		</div>
+	</div>
+
+	<!-- more on v-model - two way binding in forms	-->
+	<div class="card center">
+		<div class="form-control">
+			<label for="first-name">First Name: </label>
+			<input type="text"
+				   id="first-name"
+				   placeholder="Your First Name"
+				   v-model="firstName"
+			/>
+			<label class="pt-1" for="first-name">Last Name: </label>
+			<input type="text"
+				   id="last-name"
+				   placeholder="Your Last Name"
+				   v-model="lastName"
+			/>
+
+			<div class="pt-1"
+				 v-if="firstName.length || lastName.length">
+				Hi, {{ firstName }} {{ lastName }}!
+			</div>
 		</div>
 	</div>
 </div>

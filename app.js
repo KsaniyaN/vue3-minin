@@ -7,6 +7,8 @@ const App = {
 			placeholderText: "Add your note",
 			inputValue: "",
 			notes: ["Note 1", "Note 2"],
+			firstName: "",
+			lastName: "",
 		};
 	},
 
