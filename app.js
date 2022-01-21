@@ -14,7 +14,7 @@ const App = {
 
 	methods: {
 		// inputChangeHandler(event) {
-		//     // console.log('here', event.target.value);
+		//     console.log('here', event.target.value);
 		//     this.inputValue = event.target.value;
 		// },
 
@@ -32,24 +32,22 @@ const App = {
 		// doubleCount() {
 		//     // console.log('doubleCount'); // too many calls! --> computed!
 		//     return this.notes.length * 2;
-		// },
-
-		// inputKeyPress(event) {
-		//     if (event.key === 'Enter') {
-		//         this.addNewNote();
-		//     };
-		// },
+		// }
 	},
 
+	// computed - объект, в котором можно создавать методы
 	computed: {
+		// это вычисляемые значения, зависимые от существующих переменных в приложении
+		// обращаемся к ним, как к переменным
 		doubleCountComputed() {
 			// console.log("doubleCountComputed");
 			return this.notes.length * 2;
 		},
 	},
 
+	// здесь мы можем следить за изменениями
 	watch: {
-		// watching exactly the same name
+		// --> watching exactly the same name <--
 		inputValue(value) {
 			// watch the change and eg put on some validation
 			if (value.length > 10) {

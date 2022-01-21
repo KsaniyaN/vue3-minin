@@ -1,109 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Vue3 Basics</title>
-	<link rel="stylesheet" href="theme.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3 Basics</title>
+    <link rel="stylesheet" href="theme.css">
 </head>
 
 <body>
-
 <div class="container pt-5" id="app">
 
-	<!-- Basic counter, v-on -->
-	<!-- dynamic value for html - use interpolation {{ }} -->
-	<!-- <div class="card center">
-		<h1>{{ title }}: {{ counter }}</h1>
-		<div>
-			<button class="btn primary" v-on:click="counter++">Add</button>
-			<button class="btn danger" v-on:click="counter--">Subtract</button>
-		</div>
-	</div> -->
+    <!-- Basic counter, v-on -->
+    <!-- dynamic value for html - use interpolation {{ }} -->
+    <!--    <div class="card center">-->
+    <!--        <h1>{{ title }}: {{ counter }}</h1>-->
+    <!--        <div>-->
+    <!--            <button class="btn primary" v-on:click="counter++">Add</button>-->
+    <!--            <button class="btn danger" @click="counter--">Subtract</button>-->
+    <!--        </div>-->
+    <!--    </div>-->
 
-	<div class="card">
-		<!-- binding style depending on model -->
-		<h1 :style="{
+    <div class="card">
+        <!-- binding style depending on model -->
+        <h1 :style="{
             	color: inputValue.length < 3 ? 'darkred' : 'darkblue',
             	fontSize: inputValue.length < 4 ? '2rem' : '1.5rem'
 			}"> {{ listTitle }} </h1>
 
-		<div class="form-control">
-			<!-- dynamic value for attribute - use binding, v-bind -->
-			<!-- <input type="text"
-				:placeholder="placeholderText"
-				:value="inputValue"
-				@input="inputChangeHandler"
-				@keypress.enter="addNewNote"
-			/> -->
+        <div class="form-control">
+            <!-- dynamic value for attribute - use binding, v-bind -->
+            <!--<input type="text"
+                :placeholder="placeholderText"
+                :value="inputValue"
+                @input="inputChangeHandler"
+                @keypress.enter="addNewNote"
+            />-->
 
-			<!-- even cleaner - v-model -->
-			<input type="text"
-				   :placeholder="placeholderText"
-				   v-model="inputValue"
-				   @keypress.enter="addNewNote"
-			/>
-		</div>
+            <!-- even cleaner - v-model -->
+            <input type="text"
+                   :placeholder="placeholderText"
+                   v-model="inputValue"
+                   @keypress.enter="addNewNote"
+            />
+        </div>
 
-		<!-- dynamic value update - binding -->
-		<!-- <h2>inputValue: {{ inputValue }}</h2> -->
-		<button class="btn " @click="addNewNote ">Add</button>
+        <!-- dynamic value update - binding -->
+        <!-- <h2>inputValue: {{ inputValue }}</h2> -->
+        <button class="btn " @click="addNewNote">Add</button>
 
-		<!-- v-if -->
-		<div v-if="notes.length !==0 ">
-			<hr/>
-			<ul class="list ">
-				<li class="list-item " v-for="(note, i) in notes">
-					<!-- dynamic classes -->
-					<!-- <span :class="note.length < 3 ? 'danger': ''">{{ i + 1 }}. {{ note }}</span> -->
+        <!-- v-if -->
+        <div v-if="notes.length !==0 ">
+            <hr/>
+            <ul class="list">
+                <li class="list-item" v-for="(note, i) in notes">
+                    <!-- dynamic classes -->
+                    <!-- <span :class="note.length < 3 ? 'danger': ''">{{ i + 1 }}. {{ note }}</span> -->
 
-					<!-- dynamic classes as object -->
-					<!-- <span :class="{
-						'danger': note.length < 3,
-						'bold': note.length > 5
-					}"> {{ i + 1 }}. {{ note }} </span> -->
+                    <!-- dynamic classes as object -->
+                    <!-- <span :class="{
+                        'danger': note.length < 3,
+                        'bold': note.length > 5
+                    }"> {{ i + 1 }}. {{ note }} </span> -->
 
-					<!-- dynamic classes - array  -->
-					<span :class="['bold', {'primary': note.length > 5}]">{{ i + 1 }}. {{ note }}</span>
+                    <!-- dynamic classes - array  -->
+                    <span :class="['bold', {'primary': note.length > 5}]">{{ i + 1 }}. {{ note }}</span>
 
-					<button class="btn danger " @click="deleteNote(i) ">Delete</button>
-				</li>
-				<hr/>
-				<li>
-					<strong>Total notes: {{ notes.length }} | Doubled: {{ doubleCountComputed }}</strong>
-				</li>
-			</ul>
-		</div>
-		<!-- v-else -->
-		<div v-else>
-			<p>There are no notes yet. It feels lonely..</p>
-		</div>
-	</div>
+                    <button class="btn danger" @click="deleteNote(i)">Delete</button>
+                </li>
+            </ul>
+            <hr/>
+            <strong>Total notes: {{ notes.length }} | Doubled: {{ doubleCountComputed }}</strong>
+        </div>
+        <!-- v-else -->
+        <div v-else>
+            <p>There are no notes yet. It feels lonely</p>
+        </div>
+    </div>
 
-	<!-- more on v-model - two way binding in forms	-->
-	<div class="card center">
-		<div class="form-control">
-			<label for="first-name">First Name: </label>
-			<input type="text"
-				   id="first-name"
-				   placeholder="Your First Name"
-				   v-model="firstName"
-			/>
-			<label class="pt-1" for="first-name">Last Name: </label>
-			<input type="text"
-				   id="last-name"
-				   placeholder="Your Last Name"
-				   v-model="lastName"
-			/>
+    <!-- more on v-model - two way binding in forms	-->
+    <div class="card center">
+        <div class="form-control">
+            <label for="first-name">First Name: </label>
+            <input type="text"
+                   id="first-name"
+                   placeholder="Your First Name"
+                   v-model="firstName"
+            />
+            <label class="pt-1" for="first-name">Last Name: </label>
+            <input type="text"
+                   id="last-name"
+                   placeholder="Your Last Name"
+                   v-model="lastName"
+            />
 
-			<div class="pt-1"
-				 v-if="firstName.length || lastName.length">
-				Hi, {{ firstName }} {{ lastName }}!
-			</div>
-		</div>
-	</div>
+            <div class="pt-1"
+                 v-if="firstName.length || lastName.length">
+                Hi, {{ firstName }} {{ lastName }}!
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="https://unpkg.com/vue@next"></script>
