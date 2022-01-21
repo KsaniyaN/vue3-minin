@@ -1,85 +1,96 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport"
-		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Vue3 Basics #2</title>
-	<link rel="stylesheet" href="theme.css">
-	<style>
-		[v-cloak] {
-			display: none;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue3 Basics #2</title>
+    <link rel="stylesheet" href="theme.css">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
 </head>
+
 <body>
 <div class="container pt-5" id="app" v-cloak>
-	<div class="card center">
-		<div v-html="myHtml"></div>
-		<h2 v-text="title"></h2>
-		<h2 v-once>{{ title }}</h2>
-		<h2 v-pre>{{ title }}</h2>
+    <div class="card center">
+        v-html
+        <div v-html="myHtml"></div>
+        v-text
+        <h2 v-text="title"></h2>
+        v-once
+        <h2 v-once>{{ title }}</h2>
+        v-pre
+        <h2 v-pre>{{ title }}</h2>
 
-		<button class="btn" @click="title = 'Chocolate oat cake apple pie halvah powder gummi bears'">
-			Change Title
-		</button>
-		<span class="pt-1">if you can</span>
-	</div>
+        <button class="btn" @click="title = 'Chocolate oat cake apple pie halvah powder gummi bears'">
+            Change Title
+        </button>
+        <span class="pt-1">if you can</span>
+    </div>
 
-	<div class="card center">
-		<ul class="list" v-if="myItems.length">
-			<!-- v-for - numbers, id's -->
-			<!-- <li class="list-item" v-for="(item, i) in 7">
-				{{ i }}. {{ item }}
-			</li> -->
+    <div class="card center">
+        <ul class="list">
+            <!-- v-for - numbers, id's -->
+            <li class="list-item" v-for="(item, i) of 4">
+                {{ i }}. {{ item }}
+            </li>
 
-			<!-- v-for - object -->
-			<!-- <li class="list-item" v-for="(value, key) in person ">
-				<strong>{{ key }}:</strong> {{ value }}
-			</li> -->
+            <!-- v-for - object -->
+            <li class="list-item" v-for="(value, key) in person ">
+                <strong>{{ key }}:</strong> {{ value }}
+            </li>
+        </ul>
+    </div>
 
-			<!-- v-for - array -->
-			<li class="list-item"
-				v-for="(item, i) in myItems"
-				@click="myItems.splice(i, 1)">
-				{{ item }}.
-			</li>
-		</ul>
+    <div class="card center">
+        <p v-show="myItems.length">Click the items - v-show</p>
 
-		<!-- v-else, v-show -->
-		<p class="danger" v-else>No more elements - v-else</p>
-		<p class="danger" v-show="myItems.length === 0">No more elements - v-show</p>
-	</div>
+        <ul class="list" v-if="myItems.length">
+            <!-- v-for - array -->
+            <li class="list-item"
+                v-for="(item, i) in myItems"
+                @click="myItems.splice(i, 1)">
+                {{ item }}.
+            </li>
+        </ul>
 
-<!--	<div class="card center">-->
-<!--		<ul class="list" v-if="myNumbers.length">-->
-<!--			<li class="list-item"-->
-<!--				v-for="(item, i) in evenItems"-->
-<!--				@click="myNumbers.splice(i, 1)"-->
-<!--				:key="item">-->
-<!--				<strong>{{ item }}.</strong> <input type="text" @click.prevent.stop>-->
-<!--			</li>-->
-<!--		</ul>-->
-<!--		<p class="danger" v-else>No more elements - v-else</p>-->
-<!--	</div>-->
+        <!-- v-else, v-show -->
+        <p class="danger" v-else>No more elements - v-else</p>
+    </div>
 
-	<div class="card center">
+    <!--	<div class="card center">-->
+    <!--		<ul class="list" v-if="myNumbers.length">-->
+    <!--			<li class="list-item"-->
+    <!--				v-for="(item, i) in evenItems"-->
+    <!--				@click="myNumbers.splice(i, 1)"-->
+    <!--				:key="item">-->
+    <!--				<strong>{{ item }}.</strong> <input type="text" @click.stop>-->
+    <!--			</li>-->
+    <!--		</ul>-->
+    <!--		<p class="danger" v-else>No more elements - v-else</p>-->
+    <!--	</div>-->
 
-		<div class="form-control">
-			<input type="text" @keyup.enter="addNewListItem" ref="myInput">
-		</div>
+    <div class="card center">
 
-		<ul class="list" v-if="myNumbers.length">
-			<li class="list-item"
-				v-for="(item, i) in myNumbers"
-				@click="removeItem(i), logItem(item)"
-				:key="item">
-				<strong>{{ item }}.</strong> <input type="text" @click.prevent.stop>
-			</li>
-		</ul>
-		<p class="danger" v-else>No more elements - v-else</p>
-	</div>
+        <div class="form-control">
+            <input type="text" @keyup.enter="addNewListItem" ref="myInput">
+        </div>
+
+        <!-- v-bind:key - makes the element unique -->
+        <ul class="list" v-if="myNumbers.length">
+            <li class="list-item"
+                v-for="(item, i) in myNumbers"
+                @click.right="removeItem(i), logItem(item)"
+                :key="item">
+                <strong>{{ item }}.</strong> <input type="text" @click.prevent.stop>
+            </li>
+        </ul>
+        <p class="danger" v-else>No more elements - v-else</p>
+    </div>
 </div>
 
 <script src="https://unpkg.com/vue@next"></script>
